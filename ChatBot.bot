@@ -1,0 +1,18 @@
+{
+    "name": "ChatBot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:4000/api/messages",
+            "id": "8ac263e0-96af-11ea-9d87-6d8e7740d994",
+            "name": "http://localhost:4000/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "overrides": null,
+    "path": "D:\\Microsoft VS Code\\Project\\ChatBot\\ChatBot.bot"
+}
