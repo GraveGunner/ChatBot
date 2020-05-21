@@ -6,6 +6,7 @@ from luis import Luis
 class LUISBot(ActivityHandler):
 
     def __init__(self):
+
         luis_app = LuisApplication("85e56c2f-7ed4-4da1-b6ec-775b5090f3a8","346756f90f054396ab25f97c61dc13a4","https://westus.api.cognitive.microsoft.com/")
         luis_option = LuisPredictionOptions(include_all_intents=True, include_instance_data=True)
         self.LuisReg = LuisRecognizer(luis_app, luis_option, True)
