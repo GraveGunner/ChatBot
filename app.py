@@ -22,14 +22,14 @@ def messages():
    
     activity = Activity().deserialize(jsonmessage)
     auth_header = request.headers["Authorization"] if "Authorization" in request.headers else ""
-
-
-    async def turn_call(turn_context: TurnContext):
-        await luis.on_turn(turn_context)
     
-    task = loop.create_task(botadapter.process_activity(activity, auth_header, turn_call))
-    loop.run_until_complete(task)
-    return("Done!")
+    try:
+        task = loop.create_task(botadapter.process_activity(activity, auth_header, luis.on_turn))
+        loop.run_until_complete(task)
+        return Response(status=201)
+    except Exception as exception:
+        raise exception
+
 
 if __name__ == "__main__":
     app.run("localhost", 4000)

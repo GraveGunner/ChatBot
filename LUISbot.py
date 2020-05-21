@@ -12,8 +12,9 @@ class LUISBot(ActivityHandler):
         self.LuisReg = LuisRecognizer(luis_app, luis_option, True)
        
     async def on_members_added_activity(self,members_added: ChannelAccount,turn_context: TurnContext):
-        for member_added in members_added:
-            await turn_context.send_activity("Hello and welcome!")
+        for member in members_added:
+            if member.id != turn_context.activity.recipient.id:
+                await turn_context.send_activity("Hello and welcome!")
     
     
     async def on_message_activity(self, turn_context: TurnContext):
