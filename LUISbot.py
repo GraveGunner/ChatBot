@@ -38,7 +38,22 @@ class LUISBot(ActivityHandler):
             if topping != None and size != None:           
                 await turn_context.send_activity(f"Total Price is {db.pizzaorder(topping, size)} INR")
         if result.top_scoring_intent.intent == 'Greeting':
-            await turn_context.send_activity(f"{self.greet[randint(0, len(self.greet))]}")
+            await turn_context.send_activity(f"{self.greet[randint(0, len(self.greet) - 1)]}")
+        if result.top_scoring_intent.intent == 'Reservation':
+            await turn_context.send_activity(f"Your table has been booked.")
+            if result.entities:
+                await turn_context.send_activity(f"Details are - ")
+                for i in range(len(result.entities)):
+                    await turn_context.send_activity(f"{result.entities[i].type} -> {result.entities[i].entity} ")
+        if result.top_scoring_intent.intent == 'Cancellation':
+            await turn_context.send_activity("Your table has been cancelled.")
+        
+        
+        
+        
+        
+        
+        
         # await turn_context.send_activity(f"Top Intent : {result.top_scoring_intent.intent}")
         # if len(result.entities):
         #     for i in range(len(result.entities)):
